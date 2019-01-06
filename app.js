@@ -36,6 +36,11 @@ app.get('/about', (req, res) => {
   res.render('about');
 });
 
+// Add video Form
+app.get('/videos/add', (req, res) => {
+  res.render('videos/add');
+});
+
 app.listen(port, () => {
   console.log(`server run at port ${port}`);
 });
