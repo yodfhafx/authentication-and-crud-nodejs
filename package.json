@@ -1,0 +1,23 @@
+{
+  "name": "authentication-and-crud-nodejs",
+  "version": "1.0.0",
+  "description": "App to create video ideas",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yodfhafx/authentication-and-crud-nodejs.git"
+  },
+  "author": "yodfhafx",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yodfhafx/authentication-and-crud-nodejs/issues"
+  },
+  "homepage": "https://github.com/yodfhafx/authentication-and-crud-nodejs#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.0"
+  }
+}
