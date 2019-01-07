@@ -41,6 +41,17 @@ app.get('/about', (req, res) => {
   res.render('about');
 });
 
+// Video Index Page
+app.get('/videos', (req, res) => {
+  Video.find({})
+  .sort({date: 'desc'})
+  .then(videos => {
+    res.render('videos/index', {
+      videos: videos
+    });
+  });
+});
+
 // Add video Form
 app.get('/videos/add', (req, res) => {
   res.render('videos/add');
@@ -62,7 +73,15 @@ app.post('/videos', (req, res) => {
       details: req.body.details
     });
   } else {
-    res.send('passed');
+    const newUser = {
+      title: req.body.title,
+      details: req.body.details
+    }
+    new Video(newUser)
+    .save()
+    .then(video => {
+      res.redirect('/videos');
+    });
   }
 });
 
