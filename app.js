@@ -1,5 +1,6 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
+const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 const app = express();
@@ -23,6 +24,10 @@ const Video = mongoose.model('videos');
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
+// Body parser Middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
 // Index route
 app.get('/', (req, res) => {
   const title = 'Welcome';
@@ -39,6 +44,26 @@ app.get('/about', (req, res) => {
 // Add video Form
 app.get('/videos/add', (req, res) => {
   res.render('videos/add');
+});
+
+// Process Form
+app.post('/videos', (req, res) => {
+  let errors = [];
+  if(!req.body.title){
+    errors.push({text: 'Please add a title'});
+  }
+  if(!req.body.details){
+    errors.push({text: 'Please add a details'});
+  }
+  if(errors.length > 0){
+    res.render('videos/add', {
+      errors: errors,
+      title: req.body.title,
+      details: req.body.details
+    });
+  } else {
+    res.send('passed');
+  }
 });
 
 app.listen(port, () => {
