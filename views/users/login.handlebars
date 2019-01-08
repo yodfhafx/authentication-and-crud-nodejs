@@ -3,8 +3,8 @@
     <div class="card card-body">
       <img class="logo" src="/img/logo.png">
       <h3 class="text-center">Account Login</h3>
-      <form>
-        <div class="form-group">
+      <form method="post">
+        <div action="/users/login" class="form-group">
           <label for="email">Email</label>
           <input type="email" name="email" class="form-control" required>
         </div>
