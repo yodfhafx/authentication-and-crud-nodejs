@@ -2,12 +2,16 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 // Create Schema
-const VideoSchema = new Schema({
-  title: {
+const UserSchema = new Schema({
+  name: {
     type: String,
     required: true
   },
-  details: {
+  email: {
+    type: String,
+    required: true
+  },
+  password: {
     type: String,
     required: true
   },
@@ -17,4 +21,4 @@ const VideoSchema = new Schema({
   },
 }); 
 
-mongoose.model('videos', VideoSchema);
+mongoose.model('users', UserSchema);
