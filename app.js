@@ -9,7 +9,6 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 
 const app = express();
-const port = 3000;
 
 // Load routes
 const videos = require('./routes/videos.js');
@@ -18,11 +17,14 @@ const users = require('./routes/users.js');
 // Passport Config
 require('./config/passport')(passport);
 
+// DB config
+const db = require('./config/database');
+
 // Map global promise - get rid of warning
 mongoose.Promise = global.Promise;
 
 // Connect to mongoose
-mongoose.connect('mongodb://localhost/videojs-dev', {
+mongoose.connect(db.mongoURI, {
   useMongoClient: true
 })
 .then(() => console.log('MongoDB connected...'))
@@ -80,6 +82,8 @@ app.get('/about', (req, res) => {
 // Use routes
 app.use('/videos', videos);
 app.use('/users', users);
+
+const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
   console.log(`server run at port ${port}`);
